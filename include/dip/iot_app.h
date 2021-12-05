@@ -10,7 +10,9 @@
  for some external reason, it will reconnect if the reason is solved.
 */
 
+#include <list>
 #include "app.h"
+#include "setting_partition.h"
 
 namespace dip
 {
@@ -21,6 +23,9 @@ namespace dip
         bool __wifi_connection_mode;
 
     protected:
+        // Linked lists for configuration
+        std::list<SettingPartition> _configuration;
+
         // Helper functions for subclasses
         bool _setup()
         {
@@ -30,6 +35,10 @@ namespace dip
 
             // Start the setup from App
             App::_setup();
+
+            // Add configuration for the WiFi
+            SettingPartition wifi_settings("WiFi settings");
+            _configuration.push_front(wifi_settings);
         }
 
         bool _loop()
@@ -42,8 +51,15 @@ namespace dip
             App::_loop();
         }
 
+        bool _connect_to_wifi()
+        {
+            // Method to connect to the WiFi
+            // TODO: Implement
+        }
+
         void _start_ap_mode()
         {
+            // Method to start the AP mode
             // TODO: Implement
         }
 
