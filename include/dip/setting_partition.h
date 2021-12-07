@@ -14,7 +14,7 @@ namespace dip
     {
     private:
         std::string __name;
-        std::list<Setting> __settings;
+        std::list<Setting *> __settings;
 
     public:
         SettingPartition(std::string name)
